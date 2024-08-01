@@ -71,7 +71,7 @@ const deleteMovie = async (req, res) => {
     const movie = await Movie.findOne({ Id: req.params.id });
     if (!movie) return res.status(404).json({ message: 'Movie not found' });
 
-    await movie.remove();
+    await Movie.deleteOne({ Id: req.params.id }); // Updated this line
     res.json({ message: 'Movie deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });
